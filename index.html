@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Scrolling effect</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+
+        .section1 {
+            background-color: rgb(32, 139, 143);
+            height: 70vh;
+        }
+
+        .section2 {
+            background-color: rgb(10, 34, 10);
+            height: 500px;
+
+        }
+
+        .section3 {
+            background-color: rgb(167, 46, 106);
+            height: 1290px;
+        }
+
+        .section4 {
+            background-color: rgb(102, 43, 28);
+            height: 150vh;
+        }
+
+        .info {
+            position: fixed;
+            left: 0;
+            top: calc(50% - 35px);
+            height: 70px;
+            width: 100%;
+            box-shadow: 0 0 3px 3px grey;
+            background-color: rgb(200, 200, 200);
+            font-size: 30px;
+            line-height: 70px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="section1"></section>
+    <section class="section2"></section>
+    <section class="section3"></section>
+    <section class="section4"></section>
+    <div class="info">Hello worldZ</div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+
+        function scroller() {
+            const $banner = $(".info");
+            // distance of our scrollbar
+            const $scrollBar = $(window).scrollTop();
+            // distance from the start
+            const $s1Top = $(".section1").offset().top;
+            const $s2Top = $(".section2").offset().top;
+            const $s3Top = $(".section3").offset().top;
+            const $s4Top = $(".section4").offset().top;
+            // elements heights
+            const $s1oH = $(".section1").outerHeight(true);
+            const $s2oH = $(".section2").outerHeight(true);
+            const $s3oH = $(".section3").outerHeight(true);
+            const $s4oH = $(".section4").outerHeight(true);
+
+            if ($scrollBar < $s1oH) {
+                $banner.text("Section 1");
+            } else if ($scrollBar < $s2oH + $s2Top) {
+                $banner.text("Section 2");
+            } else if ($scrollBar < $s3oH + $s3Top) {
+                $banner.text("Section 3");
+            } else {
+                $banner.text("Section 4");
+            }
+        }
+
+        $(window).on("scroll", scroller);
+        
+    </script>
+</body>
+
+</html>
